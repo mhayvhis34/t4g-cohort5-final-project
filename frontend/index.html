@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Registrar — Student Record System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="seal">SR</span>
+      <div>
+        <h1>Office of the Registrar</h1>
+        <p class="tagline">Student record system</p>
+      </div>
+    </div>
+    <p class="api-status" id="apiStatus">Connecting to API…</p>
+  </header>
+
+  <main>
+    <!-- Students -->
+    <section class="panel" aria-labelledby="students-heading">
+      <div class="panel-head">
+        <h2 id="students-heading">Students</h2>
+        <span class="count" id="studentCount">0</span>
+      </div>
+
+      <form id="studentForm" class="stacked-form">
+        <div class="field-row">
+          <input type="text" id="firstName" placeholder="First name" required maxlength="80" />
+          <input type="text" id="lastName" placeholder="Last name" required maxlength="80" />
+        </div>
+        <input type="email" id="email" placeholder="Email address" required maxlength="150" />
+        <div class="field-row">
+          <input type="date" id="dob" />
+          <input type="text" id="phone" placeholder="Phone (optional)" maxlength="30" />
+        </div>
+        <button type="submit">Enroll new student</button>
+      </form>
+
+      <ul id="studentList" class="record-list"></ul>
+    </section>
+
+    <!-- Courses -->
+    <section class="panel" aria-labelledby="courses-heading">
+      <div class="panel-head">
+        <h2 id="courses-heading">Courses</h2>
+        <span class="count" id="courseCount">0</span>
+      </div>
+
+      <form id="courseForm" class="stacked-form">
+        <div class="field-row">
+          <input type="text" id="courseCode" placeholder="Code, e.g. ICT 314" required maxlength="20" />
+          <input type="number" id="courseCredits" placeholder="Credits" min="1" max="12" value="3" required />
+        </div>
+        <input type="text" id="courseTitle" placeholder="Course title" required maxlength="150" />
+        <textarea id="courseDescription" placeholder="Description (optional)" rows="2" maxlength="500"></textarea>
+        <button type="submit">Add course</button>
+      </form>
+
+      <ul id="courseList" class="record-list"></ul>
+    </section>
+  </main>
+
+  <!-- Student transcript / enrollment modal -->
+  <div id="detailOverlay" class="overlay hidden">
+    <div class="transcript-card" role="dialog" aria-modal="true" aria-labelledby="detailName">
+      <button class="close-btn" id="closeDetail" aria-label="Close">×</button>
+
+      <div class="transcript-heading">
+        <p class="eyebrow">Academic transcript</p>
+        <h3 id="detailName"></h3>
+        <p id="detailEmail" class="detail-email"></p>
+      </div>
+
+      <div class="transcript-actions">
+        <button id="deleteStudentBtn" class="danger">Remove student</button>
+      </div>
+
+      <table class="ledger" id="ledgerTable">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Course</th>
+            <th>Credits</th>
+            <th>Enrolled</th>
+            <th>Grade</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="ledgerBody"></tbody>
+      </table>
+
+      <form id="enrollForm" class="enroll-form">
+        <select id="enrollCourse" required>
+          <option value="" disabled selected>Enroll in course…</option>
+        </select>
+        <button type="submit">Enroll  
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+
+  <footer style="text-align: center;">
+    <p>&copy; 2026 HACSA FOUNDATION | Designed & Developed by Mavis</p>
+</footer>
+</body>
+</html>

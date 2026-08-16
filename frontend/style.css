@@ -1,0 +1,374 @@
+/* ---------------------------------------------------------
+   Office of the Registrar — design tokens
+   Palette: deep navy ground, ivory cards, brass gold accent,
+   muted burgundy for destructive actions.
+   Display face: Spectral (transcript-serif). Body: IBM Plex Sans.
+   Signature element: the ruled ledger table inside the transcript modal.
+--------------------------------------------------------- */
+
+:root {
+  --navy: #1b2a41;
+  --navy-raised: #22354f;
+  --card: #f7f3ea;
+  --card-line: #ddd4bf;
+  --ink: #1b2a41;
+
+  --gold: #b08d57;
+  --burgundy: #7a2e2e;
+  --sage: #56705a;
+
+  --text-on-navy: #ece7da;
+  --text-dim-on-navy: #9fb0c4;
+
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--navy);
+  color: var(--text-on-navy);
+  min-height: 100vh;
+  background-image:
+    linear-gradient(var(--navy), var(--navy)),
+    repeating-linear-gradient(
+      transparent, transparent 39px, rgba(176, 141, 87, 0.06) 40px
+    );
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 40px 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.25);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.seal {
+  font-family: "Spectral", serif;
+  font-weight: 700;
+  font-size: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.02em;
+}
+
+.brand h1 {
+  font-family: "Spectral", serif;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.tagline {
+  margin: 3px 0 0;
+  color: var(--text-dim-on-navy);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.api-status {
+  font-size: 13px;
+  color: var(--text-dim-on-navy);
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 28px 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 860px) {
+  main { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 4px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 8px;
+}
+
+.panel-head h2 {
+  font-family: "Spectral", serif;
+  font-weight: 600;
+  font-size: 19px;
+  margin: 0;
+}
+
+.count {
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
+  background: rgba(176, 141, 87, 0.12);
+  border-radius: 20px;
+  padding: 2px 10px;
+}
+
+/* Forms */
+.stacked-form, .enroll-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.enroll-form {
+  flex-direction: row;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: 14px;
+}
+
+input, select, textarea {
+  background: #fff;
+  border: 1px solid var(--card-line);
+  color: var(--ink);
+  border-radius: 3px;
+  padding: 9px 11px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+button {
+  cursor: pointer;
+  background: var(--navy);
+  color: var(--text-on-navy);
+  border: none;
+  border-radius: 3px;
+  padding: 10px 16px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+
+button:hover { background: var(--navy-raised); }
+button:active { transform: scale(0.98); }
+
+button.danger {
+  background: var(--burgundy);
+}
+button.danger:hover { background: #8f3838; }
+
+.enroll-form button { flex-shrink: 0; }
+.enroll-form select { flex: 1; }
+
+/* Record lists (index-card style rows) */
+.record-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.record-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--card-line);
+  border-left: 3px solid var(--gold);
+  border-radius: 3px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: border-color 0.12s ease;
+}
+
+.record-list li:hover {
+  border-left-color: var(--burgundy);
+}
+
+.record-list .r-meta strong { display: block; font-size: 14px; }
+.record-list .r-meta span { font-size: 12px; color: #6b6455; }
+
+.record-list .r-badge {
+  font-size: 11px;
+  color: var(--sage);
+  border: 1px solid var(--sage);
+  border-radius: 20px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.record-list button.remove {
+  background: transparent;
+  color: var(--burgundy);
+  border: 1px solid var(--burgundy);
+  padding: 4px 8px;
+  font-size: 11px;
+}
+.record-list button.remove:hover { background: rgba(122, 46, 46, 0.08); }
+
+.empty-state {
+  color: #8a8471;
+  font-size: 13px;
+  padding: 14px 0;
+}
+
+/* Transcript modal */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 22, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.overlay.hidden { display: none; }
+
+.transcript-card {
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 4px;
+  padding: 30px;
+  max-width: 620px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  border-top: 4px solid var(--gold);
+}
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  color: #8a8471;
+  font-size: 22px;
+  line-height: 1;
+  padding: 4px 8px;
+}
+.close-btn:hover { color: var(--ink); background: transparent; }
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 4px;
+}
+
+.transcript-heading h3 {
+  font-family: "Spectral", serif;
+  font-size: 24px;
+  margin: 0 0 2px;
+}
+
+.detail-email {
+  color: #6b6455;
+  font-size: 13px;
+  margin: 0;
+}
+
+.transcript-actions { margin: 16px 0; }
+
+/* Ledger table — the signature element */
+.ledger {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 18px;
+  font-size: 13px;
+}
+
+.ledger thead th {
+  text-align: left;
+  font-family: "Spectral", serif;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  border-bottom: 2px solid var(--ink);
+  padding: 6px 8px;
+}
+
+.ledger tbody td {
+  padding: 8px;
+  border-bottom: 1px solid var(--card-line);
+}
+
+.ledger tbody tr:hover { background: rgba(176, 141, 87, 0.08); }
+
+.grade-input {
+  width: 48px;
+  padding: 4px 6px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.unenroll-btn {
+  background: transparent;
+  color: var(--burgundy);
+  border: none;
+  font-size: 12px;
+  padding: 2px 4px;
+}
+.unenroll-btn:hover { background: transparent; text-decoration: underline; }
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy-raised);
+  border: 1px solid var(--gold);
+  color: var(--text-on-navy);
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  z-index: 100;
+}
+
+.toast.hidden { display: none; }
+.toast.error { border-color: var(--burgundy); }
