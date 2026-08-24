@@ -52,8 +52,9 @@ app.include_router(students.router)
 app.include_router(courses.router)
 app.include_router(enrollments.router)
 
-# Serve frontend files
-frontend_path = Path(__file__).parent.parent / "frontend"
+# Serve frontend files safely using absolute paths
+BASE_DIR = Path(__file__).resolve().parent.parent
+frontend_path = BASE_DIR / "frontend"
 
 
 @app.get("/", tags=["Frontend"])
