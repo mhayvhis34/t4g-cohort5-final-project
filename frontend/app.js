@@ -1,7 +1,7 @@
 // Registrar frontend — talks to the FastAPI backend.
 // Change this if your API runs somewhere other than localhost:8000.
 
-const API_BASE_URL = ""; // Leave blank so it uses the current live domain
+const API_BASE = "https://t4g-cohort5-final-project.onrender.com/"; // Leave blank so it uses the current live domain
 
 
 
@@ -316,7 +316,7 @@ document.getElementById("deleteStudentBtn").addEventListener("click", async () =
 async function init() {
   try {
     await api("/health");
-    document.getElementById("apiStatus").textContent = "Connected to API";
+    document.getElementById("apiStatus").textContent = "Connected to F";
   } catch {
     document.getElementById("apiStatus").textContent =
       "Cannot reach API — is it running on port 8000?";
