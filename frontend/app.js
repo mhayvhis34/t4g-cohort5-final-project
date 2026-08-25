@@ -1,7 +1,7 @@
 // Registrar frontend — talks to the FastAPI backend.
 // Change this if your API runs somewhere other than localhost:8000.
 
-const API_BASE = "https://t4g-cohort5-final-project.onrender.com/"; // Leave blank so it uses the current live domain
+cconst API_BASE = "https://t4g-cohort5-final-project.onrender.com";
 
 
 
