@@ -1,9 +1,8 @@
 // Registrar frontend — talks to the FastAPI backend.
-// Change this if your API runs somewhere other than localhost:8000.
-
-cconst API_BASE = "https://t4g-cohort5-final-project.onrender.com";
-
-
+// If served from Render directly, uses relative path. Otherwise uses live Render backend URL.
+const API_BASE = window.location.origin.includes("onrender.com")
+  ? ""
+  : "https://t4g-cohort5-final-project.onrender.com";
 
 let students = [];
 let courses = [];
@@ -316,10 +315,10 @@ document.getElementById("deleteStudentBtn").addEventListener("click", async () =
 async function init() {
   try {
     await api("/health");
-    document.getElementById("apiStatus").textContent = "Connected to F";
+    document.getElementById("apiStatus").textContent = "Connected to API";
   } catch {
     document.getElementById("apiStatus").textContent =
-      "Cannot reach API — is it running on port 8000?";
+      "Cannot reach API — check connection or server status.";
   }
 
   try {
